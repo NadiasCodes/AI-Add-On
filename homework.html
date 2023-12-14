@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SheCodes</title>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+
+    
+  </head>
+
+  <body>
+    <button id="button-joke">Tell me joke</button>
+    <div id="joke"><div>
+
+
+
+    <script>
+
+
+function displayJoke(response) {
+  console.log(response.data.answer);
+
+  new Typewriter("#joke", {
+    strings: response.data.answer,
+    autoStart: true,
+    cursor: null,
+    delay: 20,
+  });
+}
+
+function generateJoke(event) {
+  event.preventDefault();
+  let apiKey = "57t510363ca64d76cf8d437ao0eea1eb";
+  let context =
+    "Your are a funny AI that tells short and sweet jokes";
+  let prompt = "Generate a short and unique joke about French people. ";
+  let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
+
+  let jokeElement = document.querySelector("#joke");
+
+  jokeElement.innerHTML = "Generating a joke for you.. please wait";
+
+  
+  axios.get(apiUrl).then(displayJoke);
+}
+
+let generatorButton = document.querySelector("#button-joke");
+generatorButton.addEventListener("click", generateJoke);
+
+    </script>
+  </body>
+</html>
