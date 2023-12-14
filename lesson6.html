@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS in JavaScript</title>
+  </head>
+  <body>
+    <style>
+      button {
+        background-color: antiquewhite;
+        border-radius: 5px;
+        padding: 20px 20px;
+      }
+
+      .highlight {
+        background-color: #d5b9b2;
+        color: black;
+        border-radius: 5px;
+      }
+    </style>
+    <button id="special-button">click me</button>
+    <h1>Type something</h1>
+
+    <script>
+      function handleClick() {
+        console.log(buttonElement.getAttribute("id")); // here i can add any attribute i have on my button
+
+        let heading = document.querySelector("h1");
+        heading.classList.add("highlight");
+
+        // in case we had the style already in css we can also remove it with: heading.classList.remove("highlight");
+        // we can also use toggle to remove or add it
+        //how to hide an element: heading.style.display = "none;"
+        // second approach is: heading.classList.add("hidden"); but for that we need to add in css and make a new class .hidden{display:none;}
+      }
+
+      let buttonElement = document.querySelector("#special-button");
+      buttonElement.addEventListener("click", handleClick);
+    </script>
+  </body>
+</html>
